@@ -1,0 +1,42 @@
+<%- include('../includes/head.ejs') %>
+  </head>
+          <body>
+          <%- include('../includes/navigation.ejs') %>
+      <div class="container" style="margin-top: 100px; margin-bottom: 100px;">
+
+      <div class="row">
+
+  
+
+        <div class="col-lg-12 ">
+
+         
+
+          
+            <ul class="list-group shadow">
+            <% for(let post of posts){ %> 
+                  <li style="padding-top: 20px; padding-bottom: 20px; font-size: 20px;"  class="list-group-item ">
+                  <a href="/post/<%= post._id %>"><%= post.title %></a>
+                  <span class="text-muted" style="font-size: 15px;">Added on <%= post.date %></span> 
+                  <form style="display: inline" method="post" action="/admin/delete-post">
+                    <input type="hidden" name="postId" value="<%= post._id %>">
+                    <button class="btn btn-danger" type="submit" style="float: right;">Delete</button>
+                  </form>
+                  <a href="/admin/edit-post/<%= post._id %>?edit=true" class="btn btn-info" style="float: right; margin-right: 15px;">Edit</a>
+                  </li>
+            <% } %> 
+            </ul>
+          </div>
+          <!-- /.row -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+      
+      <!-- /.row -->
+
+    </div>
+
+          <%- include('../includes/footer.ejs') %>
+
+<%- include('../includes/end.ejs') %>

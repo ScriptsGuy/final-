@@ -1,0 +1,251 @@
+<%- include('../includes/head.ejs') %>
+  </head>
+          <body>
+          <%- include('../includes/navigation.ejs') %>
+
+          <div class="container-fluid bg-light py-3">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+                <div class="card card-body shadow">
+                    <h3 class="text-center mb-4">Add Post</h3>
+                    <form
+                     class="form-horizontal justify-content-center"
+                      action="/admin/<% if(edit) { %>edit-post<% } else { %>add-post<% } %>"
+                      method="POST"
+                      >
+                   
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="" for="Category">Category</label>
+                            
+                            <select class="form-control input-lg" name="category">
+                                <option selected>select...</option>
+                                <option style="color:#6351ce; font-weight: bolder;font-size: 20px" disabled><strong>Laptop</strong></option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Notebook(Mini Laptop)">Notebook(Mini Laptop)</option>
+                                <option value="Tablet">Tablet</option>
+                                <option style="color:#6351ce; font-weight: bolder;font-size: 20px" disabled>Desktop Computer parts</option>
+                                <option value="Graphic card">Graphic card</option>
+                                <option value="Motherboard">Motherboard</option>
+                                <option value="Processor">Processor</option>
+                                <option value="Hard disk">Hard disk</option>
+                                <option value="RAM">RAM</option>
+                                <option value="Power Supply - Case">Power Supply - Case</option>
+                                <option value="Ventilator">Ventilator</option>
+                                <option style="color:#6351ce;font-weight: bolder;font-size: 20px" disabled>Printers & Scanners</option>
+                                <option value="Printer">Printer</option>
+                                <option value="Multifunction">Multifunction</option>
+                                <option value="Photocopier">Photocopier</option>
+                                <option value="Scanner">Scanner</option>
+                                <option value="Cartridges & Toners">Cartridges & Toners</option>
+                                <option style="color:#6351ce;font-weight: bolder;font-size: 20px" disabled>Desktop PCs & Central unit</option>
+                                <option value="Desktop computer">Desktop computer</option>
+                                <option value="Central unit">Central unit</option>
+                                <option value="All In One">All In One</option>
+                                <option value="iMac">iMac</option>
+                                <option style="color:#6351ce;font-weight: bolder;font-size: 20px" disabled>Accessories & Consumables</option>
+                                <option value="Keyboard - Mouse">Keyboard - Mouse</option>
+                                <option value="Headset - Microphone">Headset - Microphone</option>
+                                <option value="Baffle">Baffle</option>
+                                <option value="Cable">Cable</option>
+                                <option value="Joystick - Gamepad">Joystick - Gamepad</option>
+                                <option value="School bag - Small bag">School bag - Small bag</option>
+                                <option value="Paper">Paper</option>
+                                <option value="Webcam">Webcam</option>
+                                <option style="color:#6351ce;font-weight: bolder;font-size: 20px" disabled>External storage</option>
+                                <option value="External Hard Disk">External Hard Disk</option>
+                                <option value="Flash disk">Flash disk</option>
+                                <option value="Memory card">Memory card</option>
+                                <option style="color:#6351ce;font-weight: bolder;font-size: 20px" disabled>Vehicles</option>
+                                <option value="Sell a car">Sell a car</option>
+                                <option value="Motorcycles - Scooters">Motorcycles - Scooters</option>
+                                <option value="Truck">Truck</option>
+                                <option value="Machine">Machine</option>
+                                <option value="Van">Van</option>
+                                <option value="Boats - Barques">Boats - Barques</option>
+                                <option value="Tractors">Tractors</option>
+                                <option value="Trailers">Trailers</option>
+                                <option value="Bus">Bus</option>
+                                <option value="Microbus">Microbus</option>
+                                <option style="color:#6351ce;font-weight: bolder;font-size: 20px" disabled>Real estate</option>
+                                <option value="Sell Real estate">Sell Real estate</option>
+                                <option value="Rent Real estate">Rent Real estate</option>
+                                <option value="Swap Real estate">Swap Real estate</option>
+                                <option value="Real estate Rental search">Real estate Rental search</option>
+                                <option value="Real estate Vacation Rental">Real estate Vacation Rental</option>
+                                <option value="Real estate Purchase search">Real estate Purchase search</option>
+                                <option style="color:#6351ce;font-weight: bolder;font-size: 20px" disabled>Electronics & Home appliance</option>
+                                <option value="Televisions">Televisions</option>
+                                <option value="Home appliance">Home appliance</option>
+                                <option value="Cameras & Accessories">Cameras & Accessories</option>
+                                <option value="Demodulators & Decoders">Demodulators & Decoders</option>
+                                <option value="Security & Surveillance">Security & Surveillance</option>
+                                <option value="Components & Electronic material">Components & Electronic material</option>
+                                <option value="Camcorders & Accessories">Camcorders & Accessories</option>
+                                <option style="color:#6351ce;font-weight: bolder;font-size: 20px" disabled>Phones</option>
+                                <option value="Smartphones">Smartphones</option>
+                                <option value="Tablets">Tablets</option>
+                                <option value="Mobile phones">Mobile phones</option>
+                                <option value="Fixed phones">Fixed phones</option>
+                                <option style="color:#6351ce;font-weight: bolder;font-size: 20px" disabled>Phones accessories</option>
+                                <option value="Phones Screens">Phones Screens</option>
+                                <option value="Phones Batteries">Phones Batteries</option>
+                                <option value="Phones Carcasses">Phones Carcasses</option>
+                                <option value="Phones Pockets - Cases">Phones Pockets - Cases</option>
+                                <option value="Phones Chargers">Phones Chargers</option>
+                                <option style="color:#6351ce;font-weight: bolder;font-size: 20px" disabled>Phones accessories</option>
+                                <option value="Webcam">Webcam</option>
+                                <option value="Webcam">Webcam</option>
+                                <option value="Webcam">Webcam</option>
+                                <option value="Webcam">Webcam</option>
+                                
+                        
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="" for="title">Title</label>
+                            <input
+                                type="text"
+                                id="title"
+                                name="title"
+                                placeholder="Title ..."
+                                class="form-control input-lg"
+                                value="<% if(edit) { %><%= post.title %><% } %>"
+                              />
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <label class="" for="brand">Brand</label>
+                            <input
+                                type="text"
+                                id="brand"
+                                name="brand"
+                                placeholder="Brand ..."
+                                class="form-control input-lg"
+                                value="<% if(edit) { %><%= post.brand %><% } %>"
+                              />
+                            
+                        </div>
+                        <div class="form-group">
+                            <label class="" for="Condition">Condition</label>
+                        
+                            <select class="form-control input-lg" name="Condition">
+                                <option selected>Good Condition</option>
+                                <option value="Never Used">Never Used</option>
+                                <option value="Good as New/Packeged">Good as New/Packeged</option>
+                                <option value="Average State">Average State</option>
+                        
+                            </select>
+                        
+                        </div>
+                        <div class="form-group">
+                            <label class="" for="image">Image</label>
+                            <input type="text" id="image" name="image" placeholder="Image ..." class="form-control input-lg" value="<% if(edit) { %><%= post.image %><% } %>" />
+                        
+                        </div>
+                        <div class="form-group">
+                            <label class="" for="price">Price</label>
+                            <input type="number" step="0.01" id="price" name="price" placeholder="Price ..." class="form-control input-lg" value="<% if(edit) { %><%= post.price %><% } %>" />
+                        
+                        </div>
+                        <div class="form- mb-2">
+                            <label class="" for="priceState">Price State</label>
+
+                            <select class="form-control input-lg" name="priceState">
+                                <option selected>Negociable</option>
+                                <option value="Fixed">Fixed</option>
+                                <option value="Offered">Offered</option>
+                                <option value=" I accept exchange"> I accept exchange</option>
+                                <option value="I don't accept exchange">I don't accept exchange</option>
+                        
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="" for="city">City</label>
+                        
+                            <select class="form-control input-lg" name="city">
+                                <option value="Adrar">01 - Adrar</option>
+                                <option value="Chlef">02 - Chlef</option>
+                                <option value="Laghouat">03 - Laghouat</option>
+                                <option value="Oum el bouaghi">04 - Oum el bouaghi</option>
+                                <option value="Batna">05 - Batna</option>
+                                <option value="Bejaia">06 - Bejaia</option>
+                                <option value="Biskra">07 - Biskra</option>
+                                <option value="Bechar">08 - Bechar</option>
+                                <option value="Blida">09 - Blida</option>
+                                <option value="Bouira">10 - Bouira</option>
+                                <option value="Tamanrasset">11 - Tamanrasset</option>
+                                <option value="Tebessa">12 - Tebessa</option>
+                                <option value="Tlemcen">13 - Tlemcen</option>
+                                <option value="Tiaret">14 - Tiaret</option>
+                                <option value="Tizi ouzou">15 - Tizi ouzou</option>
+                                <option value="Algiers">16 - Algiers</option>
+                                <option value="Djelfa">17 - Djelfa</option>
+                                <option value="Jijel">18 - Jijel</option>
+                                <option value="Setif">19 - Setif</option>
+                                <option value="Saida">20 - Saida</option>
+                                <option value="Skikda">21 - Skikda</option>
+                                <option value="Sidi bel abbes">22 - Sidi bel abbes</option>
+                                <option value="Annaba">23 - Annaba</option>
+                                <option value="Guelma">24 - Guelma</option>
+                                <option value="Constantine">25 - Constantine</option>
+                                <option value="Medea">26 - Medea</option>
+                                <option value="Mostaganem">27 - Mostaganem</option>
+                                <option value="Msila">28 - Msila</option>
+                                <option value="Mascara">29 - Mascara</option>
+                                <option value="Ouargla">30 - Ouargla</option>
+                                <option value="Oran">31 - Oran</option>
+                                <option value="El bayadh">32 - El bayadh</option>
+                                <option value="Illizi">33 - Illizi</option>
+                                <option value="Bordj bou arreridj">34 - Bordj bou arreridj</option>
+                                <option value="Boumerdes">35 - Boumerdes</option>
+                                <option value="El taref">36 - El taref</option>
+                                <option value="Tindouf">37 - Tindouf</option>
+                                <option value="Tissemsilt">38 - Tissemsilt</option>
+                                <option value="El oued">39 - El oued</option>
+                                <option value="Khenchela">40 - Khenchela</option>
+                                <option value="Souk ahras">41 - Souk ahras</option>
+                                <option value="Tipaza">42 - Tipaza</option>
+                                <option value="Mila">43 - Mila</option>
+                                <option value="Ain defla">44 - Ain defla</option>
+                                <option value="Naama">45 - Naama</option>
+                                <option value="Ain temouchent">46 - Ain temouchent</option>
+                                <option value="Ghardaia">47 - Ghardaia</option>
+                                <option value="Relizane">48 - Relizane</option>
+                        
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="" for="phone">Phone</label>
+                            <input type="text" id="phone" name="phone" placeholder="EX: +213696257362" class="form-control input-lg" value="<% if(edit) { %><%= post.phone %><% } %>" />
+                        
+                        </div>
+                        <div class="form-group">
+                            <label class="" for="email">Email</label>
+                            <input type="text" id="email" name="email" placeholder="Email ..." class="form-control input-lg" value="<% if(edit) { %><%= post.email %><% } %>" />
+                        
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control input-lg" placeholder="Add another information here ..." name="description" rows="5"
+                                id="description"><% if(edit) { %><%= post.description %><% } %></textarea>
+                        </div>
+                        <% if(edit) { %>
+                        <input type="hidden" name="postId" value="<%= post._id %>">
+                        <% } %>
+                         
+                      
+                        <button class="btn btn-lg btn-outline-success float-right" type="submit"><% if(edit) { %>Update<% } else { %>Submit<% } %></button>
+                    </fieldset>
+                  </form>  
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+<%- include('../includes/footer.ejs') %>
+
+<%- include('../includes/end.ejs') %>
