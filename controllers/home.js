@@ -2,30 +2,31 @@ const Post = require('../models/post');
 
 exports.getHome = (req, res, next) => {
   Post.find()
-    .then(posts => {
+    .then((posts) => {
       res.render('shop/home', {
         pageTitle: 'Home Page',
         path: '/',
         posts,
-        isAuth: req.session.isLoggedIn
+        csrfToken: req.csrfToken()
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 };
 exports.getDetail = (req, res, next) => {
   const { postId } = req.params;
   Post.findById(postId)
-    .then(post => {
+    .populate('userId')
+    .then((post) => {
+      console.log(post);
       res.render('shop/post-detail', {
         pageTitle: 'Detail Page',
         path: '/',
-        post,
-        isAuth: req.session.isLoggedIn
+        post
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 };

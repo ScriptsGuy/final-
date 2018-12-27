@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a  href="/" style="font-size: 27px;"
+    <a href="/" style="font-size: 27px;"
       ><span style="color:yellow"><strong>Big</strong></span
       ><span style="color:aqua">Maghreb</span></a
     >
@@ -23,21 +23,6 @@
             >Home <span class="sr-only">(current)</span></a
           >
         </li>
-        <% if (isAuth) { %>
-        <li class="nav-item ">
-          <a class="nav-link <%= path === '/admin/posts' ? 'active' : '' %> " href="/admin/posts"
-            >Posts</a
-          >
-        </li>
-        <li class="nav-item ">
-          <a
-            class="nav-link <%= path === '/admin/favourit' ? 'active' : '' %> "
-            href="/admin/favourit"
-            >Favourit</a
-          >
-        </li>
-       
-        <% } %> 
       </ul>
       <form style="margin-right: 200px;" class="form-inline my-2 my-lg-0">
         <input
@@ -46,33 +31,66 @@
           placeholder="Search"
           aria-label="Search"
         />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
       </form>
       <ul class="navbar-nav ">
-      <% if (isAuth) { %>
-       
-      <li class="nav-item  ">
-         <a
-          style="margin-right: 15px;"
-           class=" btn btn-success <%= path === '/admin/add-post' ? 'active' : '' %> "
-           href="/admin/add-post"
-           ><i class="fas fa-plus"></i> Add Post</a
-         >
-       </li>
-      <% } %>
-      <% if (!isAuth) { %>
-      <li class="nav-item ">
-        <a class="nav-link <%= path === 'login' ? 'active' : '' %> " href="/login">Login</a>
-      </li>
-       
-      <% } %>
         <% if (isAuth) { %>
-        <li class="nav-item ">
-          <form class="form-inline" method="post" action="/logout">
-            <button type="submit" class="btn btn-primary">logout</button>
-          </form>
+
+        <li class="nav-item  ">
+          <a
+            style="margin-right: 15px; color:white"
+            class=" nav-link btn btn-success <%= path === '/admin/add-post' ? 'active' : '' %> "
+            href="/admin/add-post"
+            ><i class="fas fa-plus"></i> Add Post</a
+          >
         </li>
-         
+        <% } %> <% if (!isAuth) { %>
+        <li class="nav-item ">
+          <a class="nav-link <%= path === '/login' ? 'active' : '' %> " href="/login">Login</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link <%= path === '/signup' ? 'active' : '' %> " href="/signup">Signup</a>
+        </li>
+
+        <% } %> <% if (isAuth) { %>
+        <!-- <li class="nav-item ">
+        <button class="btn btn-light"><%= user.userName %></button>
+        </li> -->
+        <li class="nav-item dropdown ">
+          <h6
+            style="color:white; cursor:pointer"
+            class="nav-link"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <%= user.userName %> <i class="fas fa-angle-down"></i>
+          </h6>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">My Account</a>
+            <a
+              class="dropdown-item <%= path === '/admin/favourit' ? 'active' : '' %> "
+              href="/admin/favourit"
+              >Favourit</a
+            >
+            <a
+              class="dropdown-item <%= path === '/admin/posts' ? 'active' : '' %> "
+              href="/admin/posts"
+              >Posts</a
+            >
+            <form id="logout" class="form-inline" method="post" action="/logout">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <a
+                class="dropdown-item"
+                href="javascript:{}"
+                onclick="document.getElementById('logout').submit(); return false;"
+                >logout</a
+              >
+            </form>
+          </div>
+        </li>
+
         <% } %>
       </ul>
     </div>

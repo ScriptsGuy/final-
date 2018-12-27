@@ -19,6 +19,7 @@
                   <a href="/post/<%= post._id %>"><%= post.title %></a>
                   <span class="text-muted" style="font-size: 15px;">Added on <%= post.date %></span> 
                   <form style="display: inline" method="post" action="/admin/delete-post">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <input type="hidden" name="postId" value="<%= post._id %>">
                     <button class="btn btn-danger" type="submit" style="float: right;">Delete</button>
                   </form>

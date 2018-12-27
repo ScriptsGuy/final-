@@ -6,8 +6,7 @@ exports.getAddPost = (req, res, next) => {
   res.render('admin/add-post', {
     pageTitle: 'Home Page',
     path: '/admin/add-post',
-    edit: false,
-    isAuth: req.session.isLoggedIn
+    edit: false
   });
 };
 
@@ -24,8 +23,7 @@ exports.getEditPost = (req, res, next) => {
         pageTitle: 'edit post',
         path: '/admin/edit-post',
         edit,
-        post,
-        isAuth: req.session.isLoggedIn
+        post
       });
     })
     .catch((err) => {
@@ -111,13 +109,12 @@ exports.postAddPost = (req, res, next) => {
 };
 
 exports.getPosts = (req, res, next) => {
-  Post.find()
+  Post.find({ userId: req.user._id })
     .then((posts) => {
       res.render('admin/posts', {
         pageTitle: 'My Posts',
         path: '/admin/posts',
-        posts,
-        isAuth: req.session.isLoggedIn
+        posts
       });
     })
     .catch((err) => {
@@ -135,8 +132,7 @@ exports.getFavourit = (req, res, next) => {
       res.render('admin/favourit', {
         pageTitle: 'favourits',
         path: '/admin/favourit',
-        posts,
-        isAuth: req.session.isLoggedIn
+        posts
       });
     })
     .catch((err) => {
@@ -147,7 +143,10 @@ exports.getFavourit = (req, res, next) => {
 exports.postFavourit = (req, res, next) => {
   const { postId } = req.body;
   Post.findById(postId)
-    .then((post) => req.user.addToFavourit(post))
+    .then((post) => {
+      console.log(post);
+      req.user.addToFavourit(post);
+    })
     .then((result) => {
       console.log('favourit has been added xD');
       res.redirect('/admin/favourit');

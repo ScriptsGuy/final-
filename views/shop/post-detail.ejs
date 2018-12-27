@@ -58,12 +58,13 @@
               <form class="form-inline float-right" method="post" action="/admin/favourit">
                     <button type="submit" class="btn btn-outline-danger"><i class="fas fa-heart"></i></button>
                     <input name="postId" value="<%= post._id %>" type="hidden">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
               </form>
 
             <div style="margin-top: 60px;">
                   <span class="text-warning">★ ★ ★ ★ ☆</span>
                   4.0 stars
-                  <span class="text-muted" style="float:right">Added by... on <%= post.date %> </span>
+                  <span class="text-muted" style="float:right">Added by <%= post.userId.userName %>  on <%= post.date %> </span>
 
             </div>
             </div>

@@ -11,9 +11,15 @@
            
                 <div class="card card-signin my-5">
                     <div class="card-body shadow">
+                     <% if (errorMessage) { %>
+                     <div class="alert alert-danger" role="alert">
+                        <%= errorMessage %> 
+                     </div>
+                     <% } %>
                         <h5 class="card-title text-center">Sign In</h5>
                 
                         <form class="form-signin" action="/login" method="POST" >
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                    
 
                             <div class="form-label-group">
