@@ -9,7 +9,7 @@
 }
 
 /* The Modal (background) */
-.modal {
+.modall {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -28,7 +28,8 @@
   margin: auto;
   display: block;
   width: 80%;
-  max-width: 700px;
+  max-width: 800px;
+  max-height: 450px;
 }
 
 /* Caption of Modal Image */

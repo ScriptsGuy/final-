@@ -24,9 +24,9 @@
                                 <input 
                                 type="userName" 
                                 name="userName"  
-                                class="form-control " 
+                                class="form-control <%= validationErrors.find(e => e.param ===  'userName') ? 'is-invalid' : '' %>" 
                                 placeholder="User name"
-                                autofocus value="" >
+                                autofocus value="<%= oldInput.userName %>" >
                                 <!-- <label for="inputEmail">Email address</label> -->
                             </div>
                             <div class="form-label-group">
@@ -35,21 +35,21 @@
                                 name="email" 
                                 id="inputEmail"
                                 style="margin-top: 20px;" 
-                                class="form-control " 
+                                class="form-control <%= validationErrors.find(e => e.param ===  'email') ? 'is-invalid' : '' %>" 
                                 placeholder="Email address"
-                                autofocus value="" >
+                                autofocus value="<%= oldInput.email %>" >
                                 <!-- <label for="inputEmail">Email address</label> -->
                             </div>
 
                             <div class="form-label-group">
                                 <input type="password" style="margin-top: 20px;" name="password" id="inputPassword"
-                                    class="form-control " placeholder="Password" value="">
+                                    class="form-control <%= validationErrors.find(e => e.param ===  'password') ? 'is-invalid' : '' %>" placeholder="Password" value="<%= oldInput.password %>">
                                 <!-- <label for="inputPassword">Password</label> -->
                             </div>
 
                             <div class="form-label-group">
                                 <input type="password" style="margin-top: 20px;" name="confirmPassword" id="inputPassword"
-                                    class="form-control " placeholder="Confirm Password" value="">
+                                    class="form-control <%= validationErrors.find(e => e.param ===  'confirmsPssword') ? 'is-invalid' : '' %>" placeholder="Confirm Password" value="<%= oldInput.confirmPassword %>">
                                 <!-- <label for="inputPassword">Password</label> -->
                             </div>
 

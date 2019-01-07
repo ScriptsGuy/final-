@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
     <a href="/" style="font-size: 27px;"
-      ><span style="color:yellow"><strong>Big</strong></span
+      ><span style="color:#ffc107"><strong>Big</strong></span
       ><span style="color:aqua">Maghreb</span></a
     >
     <button
@@ -24,14 +24,17 @@
           >
         </li>
       </ul>
-      <form style="margin-right: 200px;" class="form-inline my-2 my-lg-0">
+      <form action="/" method="GET" style="margin-right: 200px;" class="form-inline my-2 my-lg-0">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+
         <input
           class="form-control mr-sm-2"
           type="search"
           placeholder="Search"
           aria-label="Search"
+          name="search"
         />
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
       </form>
       <ul class="navbar-nav ">
         <% if (isAuth) { %>
@@ -44,12 +47,20 @@
             ><i class="fas fa-plus"></i> Add Post</a
           >
         </li>
+        <li class="nav-item  ">
+          <a
+            style="margin-right: 15px; color:white;font-size: 25px;"
+            class=" nav-link "
+            href="/admin/add-post"
+            ><i class="far fa-bell"></i> </a
+          >
+        </li>
         <% } %> <% if (!isAuth) { %>
         <li class="nav-item ">
           <a class="nav-link <%= path === '/login' ? 'active' : '' %> " href="/login">Login</a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link <%= path === '/signup' ? 'active' : '' %> " href="/signup">Signup</a>
+          <a class="btn btn-primary  <%= path === '/signup' ? 'active' : '' %> " href="/signup">Signup</a>
         </li>
 
         <% } %> <% if (isAuth) { %>

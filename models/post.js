@@ -48,11 +48,18 @@ const postSchema = new Schema({
     required: true
   },
   date: String,
+  rate:Number,
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  }
+  },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
+  ]
 });
 
 module.exports = mongoose.model('Post', postSchema);

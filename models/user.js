@@ -15,8 +15,22 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  resetToken: String,
+  resetTokenExpiration: Date,
   favourit: {
     posts: [{ post: { type: Schema.Types.ObjectId, ref: 'Post', required: true } }]
+  },
+  posts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Post'
+    }
+  ],
+  report: {
+    time: {
+      type: Number
+    },
+    messages: []
   }
 });
 

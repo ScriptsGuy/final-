@@ -1,7 +1,9 @@
 <%- include('../includes/head.ejs') %>
  <link rel="stylesheet" href="/css/image-modal.css" />
+ <link rel="stylesheet" href="/css/rating.css" /> 
+  
   </head>
-          <body>
+    <body>
           <%- include('../includes/navigation.ejs') %>
              <div class="container" style="margin-bottom: 100px;">
 
@@ -41,7 +43,7 @@
         <div class="col-lg-9">
 
           <div class="card mt-4">
-            <img id="myImg" class="card-img-top img-fluid" src="<%= post.image %>" alt="<%= post.title %>">
+            <img id="myImg" style=" width: auto; height: 400px; object-fit: cover;" class="card-img-top img-fluid" src="<%= post.image %>" alt="<%= post.title %>">
             <%- include('../includes/image-modal.ejs') %>
 
             <div class="card-body">
@@ -54,40 +56,132 @@
               <span style="font-weight: bold; display: block">City: <%= post.city %> </span>
               <span style="font-weight: bold; display: block">Phone: <%= post.phone %> </span>
               <span style="font-weight: bold; display: block">Email: <%= post.email %> </span>
-              
+               <% if (isAuth) { %>
               <form class="form-inline float-right" method="post" action="/admin/favourit">
                     <button type="submit" class="btn btn-outline-danger"><i class="fas fa-heart"></i></button>
                     <input name="postId" value="<%= post._id %>" type="hidden">
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
               </form>
+              <% } else { %>
+               <form class="form-inline float-right" method="get" action="/login">
+                    <button type="submit" class="btn btn-outline-danger"><i class="fas fa-heart"></i></button>
+                    <input name="postId" value="<%= post._id %>" type="hidden">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              </form>
+              <% } %>
+
+              <button type="submit" class="btn btn-warning"><i class="fas fa-envelope"></i> message</button>
+              <!-- <button type="submit" class="btn btn-danger"><i class="far fa-flag"></i> report</button> -->
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">
+                <i class="far fa-flag"></i> report</button>
+
+              <div class="modal fade" id="exampleModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">report</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/report" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <input type="hidden" name="postId" value="<%= post._id %>">
+                        <div class="form-group">
+                          <label for="message-text" class="col-form-label">Message:</label>
+                          <textarea name="reportMessage" class="form-control" id="message-text"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                         
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
 
             <div style="margin-top: 60px;">
-                  <span class="text-warning">★ ★ ★ ★ ☆</span>
-                  4.0 stars
-                  <span class="text-muted" style="float:right">Added by <%= post.userId.userName %>  on <%= post.date %> </span>
+              <form class="rating" action="/rating" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <input type="hidden" name="postId" value="<%= post._id %>">
+                <label>
+                  <input type="radio" name="stars" value="1" />
+                  <span class="icon">★</span>
+                </label>
+                <label>
+                  <input type="radio" name="stars" value="2" />
+                  <span class="icon">★</span>
+                  <span class="icon">★</span>
+                </label>
+                <label>
+                  <input type="radio" name="stars" value="3" />
+                  <span class="icon">★</span>
+                  <span class="icon">★</span>
+                  <span class="icon">★</span>
+                </label>
+                <label>
+                  <input type="radio" name="stars" value="4" />
+                  <span class="icon">★</span>
+                  <span class="icon">★</span>
+                  <span class="icon">★</span>
+                  <span class="icon">★</span>
+                </label>
+                <label>
+                  <input type="radio" name="stars" value="5" />
+                  <span class="icon">★</span>
+                  <span class="icon">★</span>
+                  <span class="icon">★</span>
+                  <span class="icon">★</span>
+                  <span class="icon">★</span>
+                </label>
+                
+              </form>
+                  <span class="text-muted" style="float:right">Added by <strong><%= post.userId.userName %></strong>  on <strong><%= post.date %></strong> </span>
 
             </div>
             </div>
           </div>
           <!-- /.card -->
 
-          <!-- <div class="card card-outline-secondary my-4">
+          <div class="card card-outline-secondary my-4">
             <div class="card-header">
-              Product Reviews
+              Post Reviews
             </div>
-            <div class="card-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-              <hr>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-              <hr>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-              <hr>
-              <a href="#" class="btn btn-success">Leave a Review</a>
+            
+            <div class="card-body ">
+              <div class="comment">
+
+                <% for(comm of post.comments) { %> 
+                     <p><%= comm.comment %> </p>
+                     <small  class="text-muted">Posted by <strong><%= comm.userId.userName %></strong>  on <strong><%= comm.date %></strong> </small>
+                     <hr>
+                 <% } %> 
+              </div>
+                <% if (isAuth) { %>
+              <form id="create-form">
+                
+                <div class="form-group">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  <input type="hidden" name="postId" value="<%= post._id %>">
+                  <textarea id="create-input" name="comment" class="form-control" rows="3"></textarea>
+                </div>
+                <button class="btn btn-success">Leave a Review</button>
+              </form>
+              <% } else { %>
+                <div class="form-group">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  <input type="hidden" name="postId" value="<%= post._id %>">
+                  <textarea id="create-input" name="comment" class="form-control" rows="3"></textarea>
+                </div>
+                <a href="/login" class="btn btn-success">Leave a Review</a>
+              <% } %>
+              
+            
             </div>
-          </div> -->
+          </div>
           <!-- /.card -->
 
         </div>
@@ -96,28 +190,10 @@
       </div>
 
     </div>
-     <script>
-      // Get the modal
-      var modal = document.getElementById('myModal');
-
-      // Get the image and insert it inside the modal - use its "alt" text as a caption
-      var img = document.getElementById('myImg');
-      var modalImg = document.getElementById("img01");
-      var captionText = document.getElementById("caption");
-      img.onclick = function () {
-        modal.style.display = "block";
-        modalImg.src = this.src;
-        captionText.innerHTML = this.alt;
-      }
-
-      // Get the <span> element that closes the modal
-      var span = document.getElementsByClassName("close")[0];
-
-      // When the user clicks on <span> (x), close the modal
-      span.onclick = function () {
-        modal.style.display = "none";
-      }
-    </script>
+     <script src="/js/image-modal.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"></script>
+    <script src="/js/dd.js"></script>
            <%- include('../includes/footer.ejs') %>
 
 <%- include('../includes/end.ejs') %>

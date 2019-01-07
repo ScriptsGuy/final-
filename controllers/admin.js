@@ -46,6 +46,9 @@ exports.postEditPost = (req, res, next) => {
   const { description } = req.body;
   Post.findById(postId)
     .then((post) => {
+      if (post.userId.toString() !== req.user._id.toString()) {
+        return res.redirect('/');
+      }
       post.title = title;
       post.category = category;
       post.brand = brand;
@@ -57,12 +60,12 @@ exports.postEditPost = (req, res, next) => {
       post.phone = phone;
       post.email = email;
       post.description = description;
-      return post.save();
+      return post.save().then((result) => {
+        console.log('Upadted Post!!'.bgCyan.black);
+        res.redirect('/admin/posts');
+      });
     })
-    .then((result) => {
-      console.log('Upadted Post!!'.bgCyan.black);
-      res.redirect('/admin/posts');
-    })
+
     .catch((err) => {
       console.log(err);
     });
@@ -95,7 +98,8 @@ exports.postAddPost = (req, res, next) => {
     email,
     description,
     date,
-    userId: req.user
+    userId: req.user,
+    comments: []
   });
   post
     .save()
@@ -155,7 +159,7 @@ exports.postFavourit = (req, res, next) => {
 
 exports.postDeletePost = (req, res, next) => {
   const { postId } = req.body;
-  Post.findByIdAndRemove(postId)
+  Post.deleteOne({ _id: postId, userId: req.user._id })
     .then(() => {
       console.log('Removed Post!!'.bgRed.white);
       req.user
